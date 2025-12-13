@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/behavioural/behavioural.iml" filepath="$PROJECT_DIR$/behavioural/behavioural.iml" />
       <module fileurl="file://$PROJECT_DIR$/creational/creational.iml" filepath="$PROJECT_DIR$/creational/creational.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/lld_problems.iml" filepath="$PROJECT_DIR$/.idea/lld_problems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/problems/problems.iml" filepath="$PROJECT_DIR$/problems/problems.iml" />
       <module fileurl="file://$PROJECT_DIR$/structural/structural.iml" filepath="$PROJECT_DIR$/structural/structural.iml" />
     </modules>
   </component>
