@@ -9,7 +9,7 @@ public class PeakHourFareStrategy implements FareStrategy{
 
     @Override
     public double calculateStrategy(Ticket ticket, double fare) {
-        VehicleSize size = ticket.getVehicleSize();
+        VehicleSize size = ticket.getVehicle().getVehicleSize();
         if (isPeakHours(ticket.getArrivalTime())){
             fare *= 1.5;
         }

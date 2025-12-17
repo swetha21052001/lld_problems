@@ -10,23 +10,25 @@ import java.util.List;
 import java.util.Map;
 
 public class ParkingManager {
-    Map<VehicleSize, List<ParkingLot>> availableLots;
-    Map<Vehicle, ParkingLot> parkedVehicles;
+    private final Map<VehicleSize, List<ParkingLot>> availableLots;
+    private final Map<Vehicle, ParkingLot> parkedVehicles;
 
     public ParkingManager(Map<VehicleSize, List<ParkingLot>> parkingLots){
         this.availableLots = parkingLots;
         this.parkedVehicles = new HashMap<>();
     }
 
-    public ParkingLot findSpotForVehicle(Vehicle vehicle){
+    public synchronized ParkingLot findSpotForVehicle(Vehicle vehicle){
         VehicleSize size = vehicle.getVehicleSize();
         for(VehicleSize avSize: availableLots.keySet()){
             if(avSize.ordinal() >= size.ordinal()){
-                for(ParkingLot parkingLot : availableLots.get(avSize)){
+                List<ParkingLot> lots = availableLots.get(avSize);
+                for(ParkingLot parkingLot : lots){
                     if (parkingLot.isAvailable()){
                         parkingLot.occupy(vehicle);
                         parkedVehicles.put(vehicle, parkingLot);
-                        availableLots.get(size).remove(parkingLot);
+                        // remove from the list we iterated over
+                        lots.remove(parkingLot);
                         return parkingLot;
                     }
                 }
@@ -35,9 +37,11 @@ public class ParkingManager {
         return null;
     }
 
-    public void unparkVehicle(Vehicle vehicle){
+    public synchronized void freeParkingLot (Vehicle vehicle){
         ParkingLot parkingLot = parkedVehicles.remove(vehicle);
-        availableLots.get(parkingLot.getVehicleSize()).add(parkingLot);
-        parkingLot.vacate();
+        if (parkingLot != null) {
+            availableLots.get(parkingLot.getVehicleSize()).add(parkingLot);
+            parkingLot.vacate();
+        }
     }
 }

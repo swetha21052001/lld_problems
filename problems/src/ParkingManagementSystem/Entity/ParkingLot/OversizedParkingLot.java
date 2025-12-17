@@ -7,18 +7,18 @@ public class OversizedParkingLot implements ParkingLot {
     private final int lotNumber;
     private Vehicle vehicle;
 
-    private OversizedParkingLot(int lotNumber){
+    public OversizedParkingLot(int lotNumber){
         this.lotNumber = lotNumber;
         this.vehicle = null;
     }
 
     @Override
-    public boolean isAvailable() {
+    public synchronized boolean isAvailable() {
         return this.vehicle == null;
     }
 
     @Override
-    public void occupy(Vehicle v) {
+    public synchronized void occupy(Vehicle v) {
         if (isAvailable()){
             this.vehicle = v;
         }else{
@@ -27,7 +27,7 @@ public class OversizedParkingLot implements ParkingLot {
     }
 
     @Override
-    public void vacate() {
+    public synchronized void vacate() {
         this.vehicle = null;
     }
 

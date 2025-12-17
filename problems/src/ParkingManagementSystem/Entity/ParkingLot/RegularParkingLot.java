@@ -14,12 +14,12 @@ public class RegularParkingLot implements ParkingLot {
     }
 
     @Override
-    public boolean isAvailable() {
+    public synchronized boolean isAvailable() {
         return this.vehicle == null;
     }
 
     @Override
-    public void occupy(Vehicle v) {
+    public synchronized void occupy(Vehicle v) {
         if (isAvailable()) {
             this.vehicle = v;
         }else{
@@ -28,7 +28,7 @@ public class RegularParkingLot implements ParkingLot {
     }
 
     @Override
-    public void vacate() {
+    public synchronized void vacate() {
         this.vehicle = null;
     }
 

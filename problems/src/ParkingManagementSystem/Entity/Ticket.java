@@ -1,6 +1,7 @@
 package ParkingManagementSystem.Entity;
 
 import ParkingManagementSystem.Entity.ParkingLot.ParkingLot;
+import ParkingManagementSystem.Entity.Vehicles.Vehicle;
 import ParkingManagementSystem.Entity.Vehicles.VehicleSize;
 
 import java.time.Duration;
@@ -11,14 +12,14 @@ public class Ticket {
     String ticketId;
     LocalDateTime arrivalTime;
     LocalDateTime departureTime;
-    VehicleSize vehicleSize;
+    Vehicle vehicle;
     ParkingLot parkingLot;
 
-    public Ticket(String ticketId, LocalDateTime arrivalTime, VehicleSize vehicleSize, ParkingLot parkingLot) {
+    public Ticket(String ticketId, LocalDateTime arrivalTime, Vehicle vehicle, ParkingLot parkingLot) {
         this.ticketId = ticketId;
         this.arrivalTime = arrivalTime;
         this.departureTime = null;
-        this.vehicleSize = vehicleSize;
+        this.vehicle = vehicle;
         this.parkingLot = parkingLot;
     }
 
@@ -50,12 +51,12 @@ public class Ticket {
         this.departureTime = departureTime;
     }
 
-    public VehicleSize getVehicleSize() {
-        return vehicleSize;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleSize(VehicleSize vehicleSize) {
-        this.vehicleSize = vehicleSize;
+    public void setVehicleSize(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public ParkingLot getParkingLot() {

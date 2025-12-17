@@ -10,7 +10,7 @@ public class BaseFareStrategy implements FareStrategy{
 
     @Override
     public double calculateStrategy(Ticket ticket, double fare) {
-        VehicleSize size = ticket.getVehicleSize();
+        VehicleSize size = ticket.getVehicle().getVehicleSize();
         return switch (size) {
             case LARGE -> ticket.calculateParkingTime() * LARGE;
             case MEDIUM -> ticket.calculateParkingTime() * MED;
